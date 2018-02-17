@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpSession;
 import java.util.Collection;
 
 @Slf4j
@@ -19,11 +20,12 @@ import java.util.Collection;
 public class AdminController {
 
     @GetMapping("/admin")
-    public String admin(Model model) {
+    public String admin(Model model, HttpSession session) {
 
         Collection<SimpleGrantedAuthority> authorities = (Collection<SimpleGrantedAuthority>) SecurityContextHolder.getContext().getAuthentication().getAuthorities();
 
         log.debug("Accessing the administration web page: " + authorities);
+        log.info("Session attribute: + " + session.getAttribute("testattribute"));
         return "admin";
     }
 }

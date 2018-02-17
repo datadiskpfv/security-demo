@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -19,8 +18,15 @@ import uk.co.datadisk.securitydemo.services.UserDetailsServiceImpl;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private UserDetailsServiceImpl userDetailsService;
+    //@Autowired
+    //private UserDetailsServiceImpl userDetailsService;
+
+
+    private DatadiskAuthenticationProvider datadiskAuthenticationProvider;
+
+    public WebSecurityConfig(DatadiskAuthenticationProvider datadiskAuthenticationProvider) {
+        this.datadiskAuthenticationProvider = datadiskAuthenticationProvider;
+    }
 
     @Bean(name = BeanIds.AUTHENTICATION_MANAGER)
     @Override
@@ -36,6 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .authenticationProvider(datadiskAuthenticationProvider)
                 .authorizeRequests()
                     .antMatchers("/resources/**", "/registration", "/h2-console/**", "/webjars/**", "/login").permitAll()
                     //.antMatchers("/admin/**").hasAuthority("ADMIN")
@@ -59,8 +66,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
 
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
-    }
+    //@Autowired
+    //public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+    //    auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
+   // }
 }

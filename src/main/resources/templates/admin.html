@@ -39,6 +39,14 @@
                 This content is only shown to users.
             </div>
 
+            <div>
+                <h3>Session details</h3>
+                <div th:text="${#session}"> authentication</div>
+                <div th:text="${session}"> authentication</div>
+                <div th:text="${session.testattribute}"> authentication</div>
+
+            </div>
+
         </div>
     </div>
 </div>

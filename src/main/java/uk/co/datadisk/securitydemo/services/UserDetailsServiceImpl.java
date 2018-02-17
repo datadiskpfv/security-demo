@@ -13,15 +13,19 @@ import uk.co.datadisk.securitydemo.domain.entities.Role;
 import uk.co.datadisk.securitydemo.domain.entities.User;
 import uk.co.datadisk.securitydemo.domain.repositories.UserRepository;
 
+import javax.servlet.http.HttpSession;
 import java.util.HashSet;
 import java.util.Set;
 
 @Slf4j
-@Service
-public class UserDetailsServiceImpl implements UserDetailsService{
+//@Service
+public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private HttpSession session;
 
     @Override
     @Transactional(readOnly = true)
@@ -33,6 +37,8 @@ public class UserDetailsServiceImpl implements UserDetailsService{
             log.debug("Adding role: " + role.getName());
             grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
         }
+
+        session.setAttribute("testattribute", "hello");
 
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities);
     }
