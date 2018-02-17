@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Get Users</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"
+          th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}">
+
+    <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous" th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+
+</head>
+<body>
+<div class="container-fluid" style="margin-top: 20px">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+
+                <h2>Shopping Page</h2>
+
+                <form th:action="@{/logout}" method="post" id="logoutForm">
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Log Out</button>
+                </form>
+
+            <div sec:authorize="isAuthenticated()">
+                if authenticated you should see this, we are using Thymeleaf isAuthenticated()
+            </div>
+
+            <div sec:authorize="hasAuthority('SHOPPING')">
+                This content is only shown to shoppers.
+            </div>
+            <div sec:authorize="hasAuthority('USER')">
+                This content is only shown to users.
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
