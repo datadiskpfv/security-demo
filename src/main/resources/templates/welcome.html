@@ -34,7 +34,7 @@
                 if authenticated you should see this, we are using Thymeleaf isAuthenticated()
             </div>
             <br />
-            <div sec:authorize="hasAuthority('USER')">
+            <div sec:authorize="hasAuthority('USER') || hasAuthority('SHOPPING')">
                 This content is only shown to users.
             </div>
 
@@ -43,6 +43,7 @@
             <div th:text="${#authorization}"> authorization</div>
             <br />
             Logged user: <span sec:authentication="name">Dummy Account</span><br />
+            User Password: <span sec:authentication="principal.password">Dummy Password</span><br />
             Roles: <span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span>
 
             <div>
@@ -50,7 +51,18 @@
                 <div th:text="${#session}"> authentication</div>
                 <div th:text="${session}"> authentication</div>
                 <div th:text="${session.testattribute}"> authentication</div>
+            </div>
 
+            <div>
+                <h3>Session Role details</h3>
+                <div>
+                    <table>
+                        <tr th:each="role,iterationStatus : ${session.roles}">
+                            <td th:text="${iterationStatus.index} + '&nbsp'">0</td>
+                            <td th:text="${role.name} + ' some extra text'">name</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
 
 

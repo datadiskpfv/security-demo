@@ -15,6 +15,7 @@ import uk.co.datadisk.securitydemo.domain.entities.User;
 import uk.co.datadisk.securitydemo.domain.repositories.UserRepository;
 
 import javax.servlet.http.HttpSession;
+import java.lang.reflect.Array;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -44,8 +45,10 @@ public class DatadiskAuthenticationProvider implements AuthenticationProvider {
         ///
 
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(user, authentication.getCredentials(), grantedAuthorities);
+        //String[] roles = {"ADMIN", "SHOPPER", "USER"};
 
         session.setAttribute("testattribute", "hello from datadiskauthenticator");
+        session.setAttribute("roles", user.getRoles());
 
         return token;
     }

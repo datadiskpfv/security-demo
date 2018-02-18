@@ -1,6 +1,7 @@
 package uk.co.datadisk.securitydemo.domain.entities;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -10,7 +11,7 @@ public class User {
     private String username;
     private String password;
     private String passwordConfirm;
-    private Set<Role> roles;
+    private Set<Role> roles = new HashSet<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
