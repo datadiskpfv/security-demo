@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8"/>
     <title>Get Users</title>
@@ -16,7 +17,7 @@
             crossorigin="anonymous" th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
 </head>
 <body>
-<div class="container-fluid" style="margin-top: 20px">
+<div class="container-fluid" style="margin-top: 20px" layout:fragment="content">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <div th:if="${message}" class="alert alert-danger">
@@ -35,6 +36,9 @@
             </form>
         </div>
     </div>
+
+  <div th:include="fragments/fragment1 :: content3"></div>
+
 </div>
 </body>
 </html>

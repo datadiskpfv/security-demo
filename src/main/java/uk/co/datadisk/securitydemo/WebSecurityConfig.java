@@ -44,7 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authenticationProvider(datadiskAuthenticationProvider)
                 .authorizeRequests()
-                    .antMatchers("/resources/**", "/registration", "/h2-console/**", "/webjars/**", "/login").permitAll()
+                    .antMatchers("/resources/**", "/registration", "/h2-console/**", "/webjars/**", "/login", "/home").permitAll()
                     //.antMatchers("/admin/**").hasAuthority("ADMIN")
                     //.antMatchers("/shopping/**").hasAuthority("SHOPPING")
                     .antMatchers("/welcome").hasAuthority("USER")

@@ -67,6 +67,12 @@ public class UserController {
         return "login";
     }
 
+    @GetMapping("/home")
+    public String home(Model model) {
+        log.debug("Accessing login GET");
+        return "home";
+    }
+
     @GetMapping({"/","/welcome"})
     public String welcome(Model model) {
         Collection<SimpleGrantedAuthority> authorities = (Collection<SimpleGrantedAuthority>) SecurityContextHolder.getContext().getAuthentication().getAuthorities();
