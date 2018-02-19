@@ -5,11 +5,12 @@
 <head th:replace="fragments/header :: head"></head>
 <body>
 <div class="container">
-    <span th:include="navigation"></span>
+    <div layout:fragment="navigation_content"></div>
     <hr>
-    <div layout:fragment="content"></div>
+    <div th:include="fragments/main_title :: title"></div>
+    <div layout:fragment="home_content"></div>
     <p>default</p>
-    <span th:include="fragments/footer :: footer"></span>
+    <span th:replace="fragments/footer :: footer"></span>
 </div>
 </body>
 </html>
