@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="navigation">
 <body>
 <div layout:fragment="home_content">
+    <h2 th:text="#{datadisk.secondary.title}">secondary title</h2>
     <div>This is home page content</div>
+
+    <br />
+    <div sec:authorize="isAuthenticated()">
+        HOME PAGE - if authenticated you should see this, we are using Thymeleaf isAuthenticated()
+    </div>
 </div>
 </body>
 </html>

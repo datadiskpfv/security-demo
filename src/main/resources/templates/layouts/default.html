@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="fragments/header :: head"></head>
 <body>
 <div class="container">
@@ -11,6 +12,14 @@
     <div layout:fragment="home_content"></div>
     <p>default</p>
     <span th:replace="fragments/footer :: footer"></span>
+    <br />
+    <div sec:authorize="isAuthenticated()">
+        if authenticated you should see this, we are using Thymeleaf isAuthenticated()
+    </div>
+    <br />
+    <div sec:authorize="hasAuthority('USER') || hasAuthority('SHOPPING')">
+        This content is only shown to users.
+    </div>
 </div>
 </body>
 </html>
