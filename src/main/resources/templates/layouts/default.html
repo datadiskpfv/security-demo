@@ -3,7 +3,8 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="fragments/header :: head"></head>
+<head th:replace="fragments/header :: head">
+</head>
 <body>
 <div class="container">
     <div layout:fragment="navigation_content"></div>
@@ -17,7 +18,7 @@
         if authenticated you should see this, we are using Thymeleaf isAuthenticated()
     </div>
     <br />
-    <div sec:authorize="hasAuthority('USER') || hasAuthority('SHOPPING')">
+    <div sec:authorize="hasAuthority('USER') || hasAuthority('SHOPPING')" class="users">
         This content is only shown to users.
     </div>
 </div>

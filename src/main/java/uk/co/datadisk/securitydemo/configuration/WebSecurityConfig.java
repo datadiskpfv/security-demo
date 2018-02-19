@@ -1,6 +1,5 @@
-package uk.co.datadisk.securitydemo;
+package uk.co.datadisk.securitydemo.configuration;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -11,7 +10,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import uk.co.datadisk.securitydemo.services.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
@@ -20,7 +18,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     //@Autowired
     //private UserDetailsServiceImpl userDetailsService;
-
 
     private DatadiskAuthenticationProvider datadiskAuthenticationProvider;
 
@@ -44,7 +41,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authenticationProvider(datadiskAuthenticationProvider)
                 .authorizeRequests()
-                    .antMatchers("/resources/**", "/registration", "/h2-console/**", "/webjars/**", "/login", "/home").permitAll()
+                    .antMatchers("/resources/**", "/registration", "/h2-console/**", "/webjars/**", "/login", "/home", "/css/**").permitAll()
                     //.antMatchers("/admin/**").hasAuthority("ADMIN")
                     //.antMatchers("/shopping/**").hasAuthority("SHOPPING")
                     .antMatchers("/welcome").hasAuthority("USER")
